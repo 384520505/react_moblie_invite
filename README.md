@@ -63,6 +63,9 @@
             }),
 
 
+二、项目开发经验
+    1.cookie 可以使用 js-cookie 包
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
