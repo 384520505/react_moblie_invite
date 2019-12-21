@@ -11,3 +11,9 @@ export const USER_LIST = 'user_list';
 
 // 用户列表的反馈信息
 export const USER_LIST_MSG = 'user_list_msg';
+
+// 接收单条消息
+export const RECEIVE_MSG = 'receive_msg';
+
+// 接收消息列表
+export const RECEIVE_MSG_LIST = 'receive_msg_list';

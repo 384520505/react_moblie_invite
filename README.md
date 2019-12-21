@@ -66,6 +66,13 @@
 二、项目开发经验
     1.cookie 可以使用 js-cookie 包
 
+    2.  // 取出移动端 滑动屏幕时的报错
+        * { touch-action: pan-y; } 
+
+    3.单例模式
+        保证某一个对象只能创建一个，
+        在创建对象之前判断该对象是否存在，肉存在，不创建，不存在，则创建
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -16,3 +16,9 @@ export const reqCurUser = () => Axios('/user');
 
 // 获取用户列表
 export const reqUserList = (type) => Axios('/userlist', {type}, 'GET');
+
+// 获取消息列表
+export const reqMsgList = () => Axios('/msglist');
+
+// 修改消息
+export const reqReadMsg = (from) => Axios('/reqadmsg',{from},'POST');

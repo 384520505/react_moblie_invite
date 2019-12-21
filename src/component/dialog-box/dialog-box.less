@@ -1,0 +1,93 @@
+
+.dialog-wrap{
+    display: flex;
+    // align-items: center;
+    
+}
+
+.dialop-left{
+    margin-top: 20px;
+    .headerLogo-left{
+        margin-right: 10px;
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        margin-top: 3px;
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .dialog-box-left{
+        display: inline-block;
+        // border: 1px solid #cccccc;
+        border-radius: 3px;
+        padding: 8px 10px;
+        background: white;
+        color: #444444;
+        position: relative;
+        box-sizing: border-box;
+        white-space: normal;/*空白超出自动换行*/
+        word-wrap: break-word;/*长单词也可以换行*/
+        word-break: break-all;/*允许断开单词*/
+        font-size: 16px;
+        margin: 5px 0;
+        &::before{
+            content:'';
+            position: absolute;
+            top: 10px;
+            // left: 50%;
+            transform: translate(-20px);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid transparent;
+            border-right: 5px solid white;
+        }
+    }
+}
+
+.dialop-right{
+    justify-content: flex-end;
+    margin-top: 20px;
+    .headerLogo-right{
+        margin-left: 10px;
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        margin-top: 3px;
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .dialog-box-right{
+        display: inline-block;
+        // border: 1px solid #cccccc;
+        border-radius: 3px;
+        padding: 8px 10px;
+        background: white;
+        color: #444444;
+        position: relative;
+        box-sizing: border-box;
+        white-space: normal;/*空白超出自动换行*/
+        word-wrap: break-word;/*长单词也可以换行*/
+        word-break: break-all;/*允许断开单词*/
+        font-size: 16px;
+        margin: 5px 0;
+        &::after{
+            content:'';
+            position: absolute;
+            top: 10px;
+            right: 0%;
+            transform: translate(10px);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid white;
+            border-right: 5px solid transparent;
+        }
+    }
+}

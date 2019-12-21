@@ -19,6 +19,12 @@ class UserList extends PureComponent {
         getUserList: propTypes.func.isRequired,
     }
 
+    // 卡片点击事件
+    handleClick = (_id) => {
+        // 跳转到聊天界面
+        this.props.history.push(`/chat/${_id}`);
+    }
+
     componentDidMount() {
         // 获取用户列表
         this.props.getUserList(this.props.user.type === 'laoban' ? 'dashen' : 'laoban');
@@ -34,7 +40,7 @@ class UserList extends PureComponent {
                         return (
                             <div key={user._id}>
                                 <WhiteSpace />
-                                <Card>
+                                <Card onClick={() => {this.handleClick(user._id)}}>
                                     <Card.Header
                                         // title='hello'
                                         thumb={require(`../../assect/header/${user.header}.png`)}

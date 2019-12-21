@@ -6,7 +6,9 @@ import {
     AUTH_USER,
     BACK_MSG,
     USER_LIST,
-    USER_LIST_MSG
+    USER_LIST_MSG,
+    RECEIVE_MSG_LIST,
+    RECEIVE_MSG,
 } from './action-types';
 
 
@@ -46,7 +48,31 @@ function userlist (state=initUserList, action) {
     }
 }
 
+
+// 聊天的reducer（chat）
+const initChat = {
+    // 消息列表的用户对象数组
+    users:[],
+    // 聊天的数据
+    chatMsgs:[],
+    // 消息的未读数量
+    unreadMsg:0,
+}
+function chat (state=initChat, action) {
+    switch(action.type){
+        case RECEIVE_MSG_LIST:
+            const { users, chatMsgs } = action.data;
+            return {users, chatMsgs};
+        case RECEIVE_MSG:
+            const {chatMsg} = action.data;
+            return { users:state.users, chatMsgs:[...state.chatMsgs, chatMsg] };
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     user,
-    userlist
+    userlist,
+    chat,
 });

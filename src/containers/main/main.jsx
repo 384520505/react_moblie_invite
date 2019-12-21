@@ -22,6 +22,7 @@ import NavFooter from '../../component/nav-footer/nav-footer';
 import BarHeader from '../../component/header/header';
 import Message from '../message/message';
 import Mind from '../mind/mind';
+import Chat from '../chat/chat';
 
 class Main extends PureComponent {
 
@@ -57,16 +58,17 @@ class Main extends PureComponent {
         return (
             <div style={{ height: '100%', background: '#eee'}}>
                 {
-                    (path === '/login' || path === '/register' || path === '/information') ? null : <BarHeader />
+                    (path === '/userlist' || path === '/message' || path === '/mind') ? <BarHeader /> : null
                 }
                 <Switch>
                     <Route path='/userlist' component={UserList}></Route>
                     <Route path='/message' component={Message}></Route>
                     <Route path='/mind' component={Mind}></Route>
+                    <Route path='/chat/:userid' component={Chat}></Route>
                     <Route path='/information' component={Information}></Route>
                 </Switch>
                 {
-                    (path === '/login' || path === '/register' || path === '/information') ? null : <NavFooter />
+                    (path === '/userlist' || path === '/message' || path === '/mind') ? <NavFooter /> : null
                 }
             </div>
         );
