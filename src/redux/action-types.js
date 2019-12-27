@@ -17,3 +17,6 @@ export const RECEIVE_MSG = 'receive_msg';
 
 // 接收消息列表
 export const RECEIVE_MSG_LIST = 'receive_msg_list';
+
+// 已读消息
+export const READED_MSG = 'readed_msg';

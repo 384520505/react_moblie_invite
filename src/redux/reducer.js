@@ -9,6 +9,7 @@ import {
     USER_LIST_MSG,
     RECEIVE_MSG_LIST,
     RECEIVE_MSG,
+    READED_MSG,
 } from './action-types';
 
 
@@ -61,11 +62,36 @@ const initChat = {
 function chat (state=initChat, action) {
     switch(action.type){
         case RECEIVE_MSG_LIST:
-            const { users, chatMsgs } = action.data;
-            return {users, chatMsgs};
+            const { users, chatMsgs,userId } = action.data;
+            // 统计所有发送给当前用户的信息，判断这些信息，是否已读，然后统计个数
+            const unreadMsg = chatMsgs.reduce((preTotal, msg)=>  preTotal + (!msg.read && msg.to === userId ? 1 : 0) ,0); 
+            return {users, chatMsgs, unreadMsg};
         case RECEIVE_MSG:
             const {chatMsg} = action.data;
-            return { users:state.users, chatMsgs:[...state.chatMsgs, chatMsg] };
+            return { 
+                users:state.users, 
+                chatMsgs:[...state.chatMsgs, chatMsg] , 
+                unreadMsg: state.unreadMsg + (!chatMsg.read && chatMsg.to === action.data.userId ? 1 : 0),
+            };
+        case READED_MSG:
+            const {count, from, to } = action.data;
+            // 将chatMsgs中 from是当前用户， to是与正在聊天的用户     所对应的消息的read 字段设置为true
+            state.chatMsgs.forEach(msg => {
+                if(msg.from === from && msg.to === to && !msg.read){
+                    msg.read = true;
+                }
+            });
+            return {
+                users:state.users,
+                chatMsgs:state.chatMsgs.map(msg => {
+                    if(msg.from===from && msg.to===to && !msg.read) { //将chatMsgs中已读的信息进行更新
+                      return {...msg, read: true}
+                    } else {// 不需要
+                      return msg
+                    }
+                  }),
+                unreadMsg:state.unreadMsg - count
+            }
         default:
             return state;
     }

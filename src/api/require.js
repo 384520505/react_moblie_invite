@@ -20,5 +20,5 @@ export const reqUserList = (type) => Axios('/userlist', {type}, 'GET');
 // 获取消息列表
 export const reqMsgList = () => Axios('/msglist');
 
-// 修改消息
-export const reqReadMsg = (from) => Axios('/reqadmsg',{from},'POST');
+// 读取消息
+export const reqReadedMsg = (from) => Axios('/readmsg',{from}, 'POST');

@@ -7,6 +7,7 @@ import {
     reqCurUser,
     reqUserList,
     reqMsgList,
+    reqReadedMsg,
 } from '../api/require';
 
 import {
@@ -15,6 +16,7 @@ import {
     USER_LIST,
     RECEIVE_MSG,
     RECEIVE_MSG_LIST,
+    READED_MSG,
 } from './action-types';
 
 import {
@@ -39,6 +41,9 @@ export const receive_Msg = (chatMsg, userId) => ({ type: RECEIVE_MSG, data: { ch
 
 // 接收消息列表的同步 action
 export const receive_Msg_List = ({ users, chatMsgs, userId }) => ({ type: RECEIVE_MSG_LIST, data: { users, chatMsgs, userId } });
+
+// 读取消息的同步action
+export const readed_Msg = ({count, from, to}) => ({type:READED_MSG, data:{count, from, to}});
 
 
 
@@ -171,5 +176,17 @@ export const sendMsg = ({ from, to, content }) => {
         console.log('向客户端发送消息', { from, to, content });
         // 发消息
         io.socket.emit('sendMsg', { from, to, content });
+    }
+}
+
+
+// 读取消息的异步 action
+export const readedMsg = (from, to) => {
+    return async dispatch => {
+        const result = await reqReadedMsg(from);
+        if (result.data.code === 0) {
+            const count = result.data.data;
+            dispatch(readed_Msg({count, from, to}));
+        }
     }
 }

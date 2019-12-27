@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './nav-footer.less'
 
@@ -10,7 +10,7 @@ import {
     TabBar,
 } from 'antd-mobile'
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { bars } from '../../utils/bars';
 
@@ -19,15 +19,16 @@ class NavFooter extends PureComponent {
 
     static propsTypes = {
         user: propTypes.object.isRequired,
+        unreadMsg: propTypes.number.isRequired,
     }
 
     componentWillMount() {
         this.bars = bars;
         // 判断当前的用户类型的是谁,并相应的隐藏
         const { type } = this.props.user;
-        if(type === 'dashen'){
+        if (type === 'dashen') {
             this.bars[1].hide = true;
-        }else{
+        } else {
             this.bars[0].hide = true;
         }
 
@@ -66,6 +67,7 @@ class NavFooter extends PureComponent {
                             onPress={() => {
                                 this.props.history.replace(barItem.path);
                             }}
+                            badge={barItem.key === 'message' ? this.props.unreadMsg : 0}
                         />
                     })
                 }
@@ -75,5 +77,5 @@ class NavFooter extends PureComponent {
 }
 
 export default withRouter(connect(
-    state => ({user: state.user}),
+    state => ({ user: state.user, unreadMsg: state.chat.unreadMsg }),
 )(NavFooter));

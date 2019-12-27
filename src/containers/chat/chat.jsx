@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
-import BarHeader from '../../component/header/header';
 import DialogBox from '../../component/dialog-box/dialog-box';
 
 import {
@@ -16,14 +15,17 @@ import {
 
 import { emojis } from '../../utils/emoji';
 
-import { sendMsg } from '../../redux/actions'
+import { sendMsg, readedMsg } from '../../redux/actions'
 
 import './chat.less';
 
 class Chat extends PureComponent {
 
     static propsTypes = {
+        // 发送信息
         sendMsg: propTypes.func.isRequired,
+        // 读取信息
+        readedMsg: propTypes.func.isRequired,
         // 当前登陆的用户信息
         user: propTypes.object.isRequired,
         // 聊天的数据
@@ -73,6 +75,13 @@ class Chat extends PureComponent {
         }, 0)
     }
 
+    // 输入表情数据
+    inputEmoji = (emoji, index) => {
+        this.setState((state) => {
+            return {msg:state.msg + emoji.text}
+        });
+    }
+
     // 输入框聚焦
     focus = () => {
         this.setState({ isShow: false });
@@ -101,6 +110,12 @@ class Chat extends PureComponent {
         this.props.history.goBack();
     }
 
+    componentWillMount(){
+       const { userid } = this.props. match.params;
+        // this.props.readedMsg(this.props.user._id, userid);
+        this.props.readedMsg(userid, this.props.user._id);
+    }
+
     componentDidMount() {
         this.emojis = this.getEmojis();
         // 初始显示列表
@@ -112,13 +127,20 @@ class Chat extends PureComponent {
         window.scrollTo(0, document.body.scrollHeight)
     }
 
+    componentWillUnmount(){
+        
+        const { userid } = this.props. match.params;
+        this.props.readedMsg(userid, this.props.user._id);
+    }
+
 
     render() {
         const { isShow, msg } = this.state;
 
         const chatAboutMe = this.getChats();
         // 初始显示列表
-        window.scrollTo(0, document.body.scrollHeight)
+        // window.scrollTo(0, document.body.scrollHeight)
+
 
         return (
             <div style={{ padding: '45px 0 50px 0' }}>
@@ -159,6 +181,7 @@ class Chat extends PureComponent {
                         isShow ? (
                             <Grid
                                 data={this.emojis}
+                                onClick={this.inputEmoji}
                                 renderItem={emoji => (
                                     <div key={1} >
                                         <div style={{ color: '#888', fontSize: '14px', marginTop: '4px' }}>
@@ -181,5 +204,5 @@ class Chat extends PureComponent {
 
 export default connect(
     state => ({ user: state.user, chat: state.chat }),
-    { sendMsg }
+    { sendMsg,readedMsg }
 )(Chat);
