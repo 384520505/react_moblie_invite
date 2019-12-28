@@ -2,7 +2,7 @@
 
 export const bars = [
     {
-        title:'大神',
+        title:'大 神',
         key:'dashen',
         path:'/userlist',
         icon: require('../assect/nav/dashen.png'),
@@ -16,14 +16,14 @@ export const bars = [
         selectedIcon: require('../assect/nav/laoban-selected.png'),
     },
     {
-        title:'消息',
+        title:'消 息',
         key:'message',
         path:'/message',
         icon: require('../assect/nav/message.png'),
         selectedIcon: require('../assect/nav/message-selected.png'),
     },
     {
-        title:'我的',
+        title:'我 的',
         key:'personal',
         path:'/mind',
         icon: require('../assect/nav/personal.png'),

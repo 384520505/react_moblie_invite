@@ -12,7 +12,7 @@ import {
     List,
     InputItem,
     Radio,
-    Button,
+    Button, 
 } from 'antd-mobile';
 
 import {
@@ -69,7 +69,7 @@ class Register extends PureComponent {
                         <InputItem clear type='password' onChange={(val) => { this.handleChange('password', val) }}>密&nbsp;&nbsp;&nbsp;码：</InputItem>
                         <InputItem clear type='password' onChange={(val) => { this.handleChange('rePassword', val) }}>确认密码：</InputItem>
                         <ListItem>
-                            <span>选则类型：</span>&nbsp;&nbsp;
+                            <span className='selectClass'>选则类型：</span>&nbsp;&nbsp;
                             <Radio
                                 className='register-radio'
                                 checked={type === 'dashen'}

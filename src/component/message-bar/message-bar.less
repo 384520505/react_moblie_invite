@@ -1,5 +1,6 @@
 .headerLogo{
     height: 40px;
+    min-width: 40px;
     width: 40px;
     img{
         display: block;
@@ -11,13 +12,23 @@
     margin-left: 15px;
     align-items: center;
     color: #696969;
+    overflow: hidden;
     .message_content{
         display: block;
         font-size: 14px;
         color: #aaaaaa;
+        width: 100%;
+        overflow:hidden;
+        text-overflow:ellipsis; 
+        white-space: nowrap;/*加宽度width属来兼容部分浏览*/
     }
     .message_username{
         display: block;
         
     }
+}
+
+.am-list-extra{
+    // display: none;
+    width: 20px;
 }

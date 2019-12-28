@@ -10,8 +10,19 @@ import {
     RECEIVE_MSG_LIST,
     RECEIVE_MSG,
     READED_MSG,
+    HEAD_MESSAGE,
 } from './action-types';
 
+
+// 头部导航栏显示的信息
+function headMessage (state='',action) {
+    switch(action.type){
+        case HEAD_MESSAGE:
+            return action.data;
+        default:
+            return state;
+    }
+}
 
 
 const initUser = {
@@ -98,6 +109,7 @@ function chat (state=initChat, action) {
 }
 
 export default combineReducers({
+    headMessage,
     user,
     userlist,
     chat,

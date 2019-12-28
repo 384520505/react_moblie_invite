@@ -17,6 +17,7 @@ import {
     RECEIVE_MSG,
     RECEIVE_MSG_LIST,
     READED_MSG,
+    HEAD_MESSAGE,
 } from './action-types';
 
 import {
@@ -26,6 +27,8 @@ import {
 // socket.io
 import io from 'socket.io-client';
 
+// 头部导航栏的 变化信息 的action
+export const head_message_action = (message) => ({type: HEAD_MESSAGE, data:message});
 
 // 授权的同步 action
 export const auth_action = (user) => ({ type: AUTH_USER, data: user });
@@ -44,6 +47,7 @@ export const receive_Msg_List = ({ users, chatMsgs, userId }) => ({ type: RECEIV
 
 // 读取消息的同步action
 export const readed_Msg = ({count, from, to}) => ({type:READED_MSG, data:{count, from, to}});
+
 
 
 

@@ -6,6 +6,7 @@ import {
     WingBlank,
     WhiteSpace,
 } from 'antd-mobile';
+import QueueAnim from 'rc-queue-anim';
 
 import { connect } from 'react-redux';
 
@@ -38,9 +39,10 @@ class UserList extends PureComponent {
                 {
                     userlist.length > 0 ? (userlist.map(user => {
                         return (
+                            <QueueAnim key={user._id} type='scale'>
                             <div key={user._id}>
                                 <WhiteSpace />
-                                <Card onClick={() => {this.handleClick(user._id)}}>
+                                <Card onClick={() => { this.handleClick(user._id) }}>
                                     <Card.Header
                                         // title='hello'
                                         thumb={require(`../../assect/header/${user.header}.png`)}
@@ -52,6 +54,7 @@ class UserList extends PureComponent {
                                     </Card.Body>
                                 </Card>
                             </div>
+                            </QueueAnim>
                         )
                     })) : null
                 }

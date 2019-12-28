@@ -1,5 +1,9 @@
 // action type 常量
 
+
+// 头部导航栏的显示信息
+export const HEAD_MESSAGE = 'head_message';
+
 // 用户授权
 export const AUTH_USER = 'auth_user';
 

@@ -10,6 +10,8 @@ import {
     TabBar,
 } from 'antd-mobile'
 
+import {head_message_action} from '../../redux/actions';
+
 import { connect } from 'react-redux';
 
 import { bars } from '../../utils/bars';
@@ -20,6 +22,7 @@ class NavFooter extends PureComponent {
     static propsTypes = {
         user: propTypes.object.isRequired,
         unreadMsg: propTypes.number.isRequired,
+        head_message_action: propTypes.func.isRequired,
     }
 
     componentWillMount() {
@@ -65,6 +68,7 @@ class NavFooter extends PureComponent {
                             }
                             selected={barItem.path === path}
                             onPress={() => {
+                                this.props.head_message_action(barItem.title);
                                 this.props.history.replace(barItem.path);
                             }}
                             badge={barItem.key === 'message' ? this.props.unreadMsg : 0}
@@ -78,4 +82,7 @@ class NavFooter extends PureComponent {
 
 export default withRouter(connect(
     state => ({ user: state.user, unreadMsg: state.chat.unreadMsg }),
+    {
+        head_message_action,
+    }
 )(NavFooter));

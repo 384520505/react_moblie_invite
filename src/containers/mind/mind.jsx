@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import {
     List,
+    Icon
 } from 'antd-mobile';
 
 const Brief = List.Item.Brief;
@@ -29,23 +30,23 @@ class Mind extends PureComponent {
                     thumb={require(`../../assect/header/${header}.png`)}
                     multipleLine
                 >
-                    {username}<Brief style={{fontSize:'12px'}}>职位：{post}</Brief>
+                    {username}<Brief style={{ fontSize: '12px' }}>职位：{post}</Brief>
                 </List.Item>
                 <List.Item
                     arrow='horizontal'
-                // thumb={require(`../../assect/header/${header}.png`)}
+                    thumb={<Icon type='check-circle' />}
                 >
                     收藏
                 </List.Item>
                 <List.Item
                     arrow='horizontal'
-                // thumb={require(`../../assect/header/${header}.png`)}
+                    thumb={<Icon type='cross-circle' />}
                 >
                     支付
                 </List.Item>
                 <List.Item
                     arrow='horizontal'
-                // thumb={require(`../../assect/header/${header}.png`)}
+                    thumb={<Icon type='check-circle-o' />}
                 >
                     卡片
                 </List.Item>

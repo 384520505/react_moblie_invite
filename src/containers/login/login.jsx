@@ -37,7 +37,7 @@ class Login extends PureComponent {
     }
 
     getLogin = () => {
-        this.props.loginAction(this.state);
+        this.props.loginAction(this.state); 
     }
 
     render() {
@@ -57,7 +57,7 @@ class Login extends PureComponent {
                         <InputItem clear onChange={val => this.handleChnage('password', val)} type='password' >密&nbsp;&nbsp;&nbsp;&nbsp;码：</InputItem>
                     </List>
                     <WhiteSpace />
-                    <Button onClick={this.getLogin} type='primary'>登陆</Button>
+                    <Button style={{background:'#21adaa'}} onClick={this.getLogin} type='primary'>登陆</Button>
                     <WhiteSpace />
                     <Button onClick={() => { this.props.history.push('/register') }} >注册</Button>
                 </WingBlank>

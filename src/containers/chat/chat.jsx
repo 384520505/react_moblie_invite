@@ -12,6 +12,7 @@ import {
     NavBar,
     Icon
 } from 'antd-mobile';
+import QueueAnim from 'rc-queue-anim';
 
 import { emojis } from '../../utils/emoji';
 
@@ -76,9 +77,9 @@ class Chat extends PureComponent {
     }
 
     // 输入表情数据
-    inputEmoji = (emoji, index) => {
+    inputEmoji = (emoji) => {
         this.setState((state) => {
-            return {msg:state.msg + emoji.text}
+            return { msg: state.msg + emoji.text }
         });
     }
 
@@ -110,8 +111,8 @@ class Chat extends PureComponent {
         this.props.history.goBack();
     }
 
-    componentWillMount(){
-       const { userid } = this.props. match.params;
+    componentWillMount() {
+        const { userid } = this.props.match.params;
         // this.props.readedMsg(this.props.user._id, userid);
         this.props.readedMsg(userid, this.props.user._id);
     }
@@ -127,9 +128,9 @@ class Chat extends PureComponent {
         window.scrollTo(0, document.body.scrollHeight)
     }
 
-    componentWillUnmount(){
-        
-        const { userid } = this.props. match.params;
+    componentWillUnmount() {
+
+        const { userid } = this.props.match.params;
         this.props.readedMsg(userid, this.props.user._id);
     }
 
@@ -139,32 +140,34 @@ class Chat extends PureComponent {
 
         const chatAboutMe = this.getChats();
         // 初始显示列表
-        // window.scrollTo(0, document.body.scrollHeight)
+        window.scrollTo(0, document.body.scrollHeight)
 
+        const redireUser = this.redireUser || {};
 
         return (
             <div style={{ padding: '45px 0 50px 0' }}>
-                <NavBar 
-                style={{position:'fixed', top:0, width:'100%', zIndex:1}}
-                onLeftClick={this.leftClick}
+                <NavBar
+                    style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1 }}
+                    onLeftClick={this.leftClick}
                     icon={<Icon type="left" />}
-                >bose</NavBar>
+                >{redireUser.username}</NavBar>
                 <div style={{ padding: '5px 10px' }}>
-                    {
-                        chatAboutMe.map(chat => {
-                            return (
-                                <DialogBox
-                                    redireUser={this.redireUser}
-                                    chat={chat}
-                                    user={this.props.user}
-                                    key={chat._id}
-                                >
-                                    {chat.content}
-                                </DialogBox>
-                            );
-                        })
-                    }
+                        {
+                            chatAboutMe.map(chat => {
+                                return (
+                                    <DialogBox
+                                        redireUser={this.redireUser}
+                                        chat={chat}
+                                        user={this.props.user}
+                                        key={chat._id}
+                                    >
+                                        {chat.content}
+                                    </DialogBox>
+                                );
+                            })
+                        }
                 </div>
+
                 <div className='footer-input'>
                     <InputItem
                         value={msg}
@@ -204,5 +207,5 @@ class Chat extends PureComponent {
 
 export default connect(
     state => ({ user: state.user, chat: state.chat }),
-    { sendMsg,readedMsg }
+    { sendMsg, readedMsg }
 )(Chat);
